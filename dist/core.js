@@ -11,3 +11,5 @@ if(typeof module!=='undefined')Object.assign(module.exports,{timeStandings,count
 
 function fmtGap(ms){return ms==null?'—':(ms>0?'+':'')+fmt(ms)}
 if(typeof module!=='undefined')module.exports.fmtGap=fmtGap;
+function validLogo(value){return typeof value==='string'&&value.length<=750000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(value)}
+if(typeof module!=='undefined')module.exports.validLogo=validLogo;
