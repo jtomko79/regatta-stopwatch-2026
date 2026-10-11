@@ -1,0 +1,1 @@
+const fs=require('node:fs'),vm=require('node:vm');const ctx={module:{exports:{}},crypto:require('node:crypto').webcrypto};vm.createContext(ctx);vm.runInContext(fs.readFileSync('public/core.js','utf8'),ctx);module.exports=ctx.module.exports;
