@@ -12,10 +12,22 @@ Slovak mobile race timer with local regatta records and server-backed live count
 
 Validation: `node checks/live-api-verify.mjs` exercises real D1 concurrency and access control via Miniflare; existing checks under `checks/` validate timer, scoring, logos and exports. Browser QA must use the Sites-supported browser workflow.
 
-## Nasadenie na Vercel (statická verzia)
+## Nasadenie na Vercel
 
-`vercel.json` nasadzuje priečinok `public/` ako statický web bez build kroku. Funguje celá časomiera
-(odpočet, posádky, dojazdy, výsledky, export). **Živé zdieľanie** (`/api/live/*`) na Verceli zatiaľ
-nefunguje – pôvodný backend beží na Cloudflare Workers + D1 s prihlásením cez ChatGPT
-(`app/api/live`, `lib/live-api.ts`, `lib/live-state.mjs`); na Vercel by sa musel preportovať
-na serverless funkcie s vlastnou databázou.
+`vercel.json` nasadzuje priečinok `public/` ako statický web bez build kroku a priečinok `api/` ako
+serverless funkcie (živé zdieľanie).
+
+### Živé zdieľanie (`/api/live/*`)
+
+Backend pre živý odpočet a prevzatie časomerania vedúcou posádkou beží vo Vercel funkciách
+(`api/live/*.js` → `lib/live-server/*.mjs` → `lib/live-state.mjs`) a ukladá stav do Redisu cez REST.
+
+Nastavenie (raz, vo Verceli): **Storage → Create Database → Upstash Redis** (alebo Marketplace → Upstash)
+a pripojiť k projektu. Vercel doplní premenné `KV_REST_API_URL` / `KV_REST_API_TOKEN`
+(podporované sú aj `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`). Po redeployi je živé
+zdieľanie funkčné; bez databázy aplikácia pri otvorení „Živý odpočet / posádky“ zobrazí, že chýba.
+
+Miestnosti (rooms) sa mažú 30 dní po poslednej zmene. Organizátorský kľúč zostáva len v prehliadači
+organizátora; posádky nepotrebujú žiadne prihlásenie.
+
+Test backendu bez Vercelu: `node checks/live-vercel-verify.mjs` (beží proti in-memory náhrade Redisu).
