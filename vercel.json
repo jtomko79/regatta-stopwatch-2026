@@ -1,0 +1,9 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "outputDirectory": "public",
+  "headers": [
+    { "source": "/(.*)", "headers": [ { "key": "Cache-Control", "value": "no-cache" } ] }
+  ]
+}

@@ -11,3 +11,11 @@ Slovak mobile race timer with local regatta records and server-backed live count
 - All elapsed times count in time rankings; points and discards remain separate.
 
 Validation: `node checks/live-api-verify.mjs` exercises real D1 concurrency and access control via Miniflare; existing checks under `checks/` validate timer, scoring, logos and exports. Browser QA must use the Sites-supported browser workflow.
+
+## Nasadenie na Vercel (statická verzia)
+
+`vercel.json` nasadzuje priečinok `public/` ako statický web bez build kroku. Funguje celá časomiera
+(odpočet, posádky, dojazdy, výsledky, export). **Živé zdieľanie** (`/api/live/*`) na Verceli zatiaľ
+nefunguje – pôvodný backend beží na Cloudflare Workers + D1 s prihlásením cez ChatGPT
+(`app/api/live`, `lib/live-api.ts`, `lib/live-state.mjs`); na Vercel by sa musel preportovať
+na serverless funkcie s vlastnou databázou.
