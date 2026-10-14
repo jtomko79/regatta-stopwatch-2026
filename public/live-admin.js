@@ -16,4 +16,3 @@ actions.live=liveOpen;actions['live-reclaim']=()=>liveControl('release');actions
 const originalRender=render;render=function(){originalRender();if(reg?.live&&view==='timer'){const box=document.createElement('div');box.className='card';box.innerHTML=`<div class="row"><p id="live-owner-status"></p>${button('Živé meranie / posádky','live')}</div>`;$('#main').appendChild(box);liveBadge()}};
 setInterval(livePoll,1000);livePoll();render();
 
-actions.focus=()=>{const expanded=document.body.classList.toggle('timer-focused');const b=$('.clock-expand');if(b)b.textContent=expanded?'↙ Späť k ovládaniu':'⤢ Veľký odpočet'};

@@ -17,4 +17,3 @@ async function flush(){if(writing||!device.queue.length)return;writing=true;whil
 async function poll(){if(busy||writing||!room)return;busy=true;try{await request();flush()}catch(e){$('#connection').textContent=e.message;$('#claim').disabled=true}busy=false}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){baseWall=Date.now();baseMono=performance.now();poll();awake()}});setInterval(()=>tick(),50);setInterval(poll,1000);if(!room)$('#connection').textContent='Chýba odkaz regaty. Otvorte odkaz od organizátora.';else poll();
 
-$('#expand').onclick=()=>{const expanded=document.body.classList.toggle('timer-focused');$('#expand').textContent=expanded?'↙ Späť k ovládaniu':'⤢ Veľký odpočet'};
