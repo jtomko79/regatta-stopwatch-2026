@@ -1,1 +1,0 @@
-export default async function handler(req,res){res.setHeader('Cache-Control','no-store');try{const m=await import('../lib/live-server/handlers.mjs');res.status(200).json({ok:true,exports:Object.keys(m)})}catch(e){res.status(200).json({ok:false,error:String(e&&e.stack||e)})}}
