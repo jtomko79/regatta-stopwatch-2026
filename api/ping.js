@@ -1,1 +1,0 @@
-export default function handler(req,res){res.setHeader('Cache-Control','no-store');res.status(200).json({ok:true,node:process.version,now:Date.now(),keys:Object.keys(process.env).filter(k=>/REDIS|KV|REST|UPSTASH|STORAGE/i.test(k))})}
