@@ -1,2 +1,1 @@
-import { ready, create } from '../lib/live-server/handlers.mjs';
-export default async function handler(req,res){if(req.method==='POST')return create(req,res);if(req.method==='GET')return ready(req,res);res.setHeader('Allow','GET, POST');res.status(405).json({error:'Method not allowed'})}
+export default async function handler(req,res){try{const {ready,create}=await import('../lib/live-server/handlers.mjs');if(req.method==='POST')return create(req,res);if(req.method==='GET')return ready(req,res);res.setHeader('Allow','GET, POST');return res.status(405).json({error:'Method not allowed'})}catch(e){res.setHeader('Cache-Control','no-store');return res.status(200).json({ready:false,error:'handler: '+String(e&&e.stack||e)})}}
