@@ -13,3 +13,5 @@ body{background:radial-gradient(ellipse at 85% 0%,#16394b66 0%,transparent 45%),
 .start-at{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}.start-at input[type=time]{font:600 22px var(--font-clock);font-variant-numeric:tabular-nums;width:100%}
 
 .mode-switch{display:flex;gap:6px;margin-bottom:12px;padding:4px;border:1px solid var(--line);border-radius:12px;background:#0b1827}.mode-switch button{flex:1;min-height:40px;background:transparent;border:0;color:var(--muted)}.mode-switch button.active{background:var(--blue);color:#071925}
+
+.start-big{width:100%;min-height:76px;margin:8px 0 4px;border-radius:14px;background:var(--green);color:#071925;font:800 22px var(--font-display);letter-spacing:1.5px}.start-big small{display:block;font:600 12px var(--font-body);letter-spacing:0;margin-top:4px;color:#173d35}
