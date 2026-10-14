@@ -1,0 +1,1 @@
+{"name": "Regatta Live", "short_name": "Regatta Live", "start_url": "/live.html", "scope": "/", "display": "standalone", "background_color": "#0b1827", "theme_color": "#0b1827", "icons": [{"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]}
