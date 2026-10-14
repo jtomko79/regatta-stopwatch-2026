@@ -13,5 +13,15 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/live",
+      "destination": "/api/live-handler"
+    },
+    {
+      "source": "/api/live/(.*)",
+      "destination": "/api/live-handler"
+    }
   ]
 }
